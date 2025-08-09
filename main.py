@@ -16,11 +16,11 @@ map_tiles = [
     [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3],
     [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3],
     [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3],
-    [3, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 3],
+    [3, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 0, 0, 0, 6, 6, 6, 0, 0, 0, 6, 6, 6, 0, 0, 0, 6, 6, 6, 6, 0, 0, 0, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 3],
     [3, 0, 0, 0, 0, 0, 6, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 6, 0, 0, 0, 0, 0, 0, 0, 0, 3],
     [3, 0, 0, 0, 0, 0, 6, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 6, 0, 0, 0, 0, 0, 0, 0, 0, 3],
     [3, 0, 0, 0, 0, 0, 6, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 6, 0, 0, 0, 0, 0, 0, 0, 0, 3],
-    [3, 0, 0, 0, 0, 0, 6, 2, 2, 2, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 2, 2, 2, 6, 1, 0, 0, 0, 0, 0, 0, 0, 3],
+    [3, 0, 0, 0, 0, 0, 6, 2, 2, 2, 6, 6, 6, 0, 0, 0, 6, 6, 6, 0, 0, 0, 6, 6, 6, 0, 0, 0, 6, 6, 6, 6, 0, 0, 0, 6, 6, 2, 2, 2, 6, 1, 0, 0, 0, 0, 0, 0, 0, 3],
     [3, 0, 0, 0, 0, 0, 6, 2, 2, 2, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 2, 2, 2, 6, 0, 0, 0, 0, 0, 0, 0, 0, 3],
     [3, 0, 0, 0, 0, 0, 6, 2, 2, 2, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 2, 2, 2, 6, 0, 0, 0, 0, 0, 0, 0, 0, 3],
     [3, 0, 0, 0, 0, 0, 6, 2, 2, 2, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 2, 2, 2, 6, 0, 0, 0, 0, 0, 0, 0, 0, 3],
@@ -65,112 +65,142 @@ collidable_tiles = [3,4,6] # Tiles que vão ter colisão
 
 # CLASSE DO PERSONAGEM (PLAYER)
 
-class Player:
-    def __init__(self, pos, speed):
-        # O PgZero carrega automaticamente o primeiro frame como a imagem inicial
-        self.actor = Actor('sprites/lelia000', pos)
+class Character:
+    def __init__(self, sprite_prefix, pos, speed, animations):
+        # sprite_prefix: caminho da pasta ou prefixo dos sprites (ex: 'sprites/lelia')
+        # animations: dicionário {'walk_up': [...], 'idle': [...], etc.}
+        self.actor = Actor(animations['idle'][0], pos)
         self.speed = speed
-
-        # Dicionario para armazenar os nomes dos arquivos para cada animacao
-        self.animations = {
-            'walk_up': ['sprites/lelia000', 'sprites/lelia001', 'sprites/lelia002'],
-            'walk_right': ['sprites/lelia003', 'sprites/lelia004', 'sprites/lelia005'],
-            'walk_down': ['sprites/lelia006', 'sprites/lelia007', 'sprites/lelia008'],
-            'walk_left': ['sprites/lelia009', 'sprites/lelia010', 'sprites/lelia011']
-        }
-        self.current_animation = 'walk_down'
+        self.animations = animations
+        self.current_animation = 'idle'  # padrão para não mover
         self.frame_index = 0
         self.animation_speed = 0.15
         self.frame_timer = 0
         self.is_moving = False
 
     def update_animation(self):
-        # Atualiza o frame de animacao com base no tempo
         self.frame_timer += self.animation_speed
-        
         if self.frame_timer >= 1:
-            self.frame_index = (self.frame_index + 1) % len(self.animations[self.current_animation])
-            # Altera a imagem do ator para o proximo arquivo na sequencia
-            self.actor.image = self.animations[self.current_animation][self.frame_index]
             self.frame_timer = 0
+            self.frame_index = (self.frame_index + 1) % len(self.animations[self.current_animation])
+            self.actor.image = self.animations[self.current_animation][self.frame_index]
 
-    def update(self):
-        self.is_moving = False
-        new_x = self.actor.x
-        new_y = self.actor.y
-
-        if keyboard.up:
-            new_y -= self.speed
-            self.current_animation = 'walk_up'
-            self.is_moving = True
-        elif keyboard.down:
-            new_y += self.speed
-            self.current_animation = 'walk_down'
-            self.is_moving = True
-        elif keyboard.left:
-            new_x -= self.speed
-            self.current_animation = 'walk_left'
-            self.is_moving = True
-        elif keyboard.right:
-            new_x += self.speed
-            self.current_animation = 'walk_right'
-            self.is_moving = True
-
-        future_rect = get_actor_rect(new_x, new_y)
-        if can_move_to(future_rect):
-            self.actor.x = new_x
-            self.actor.y = new_y
-
-
-        if self.is_moving:
-            self.update_animation()
-        else:
-            self.actor.image = self.animations[self.current_animation][0]
-            self.frame_index = 0
-    
-    def draw(self):
-        self.actor.draw() # Desenha o ator na tela
-        
-class Enemy:
-    def __init__(self, x, y):
-        self.actor = Actor('enemy_idle_0', (x, y))  # primeiro frame
-        self.speed = 1
-        self.direction = random.choice(['up', 'down', 'left', 'right'])
-        # Dicionario para armazenar os nomes dos arquivos para cada animacao
-        self.animations = {
-            'idle': ['enemy_idle_0', 'enemy_idle_1'],
-            'walk': ['enemy_walk_0', 'enemy_walk_1', 'enemy_walk_2']
-        }
-        self.current_animation = 'walk'
-        self.frame_index = 0
-        self.frame_timer = 0
-        self.frame_speed = 0.2
-
-    def update(self):
-        dx, dy = 0, 0 # movimento simples bem padrão
-        if self.direction == 'up': dy = -self.speed
-        elif self.direction == 'down': dy = self.speed
-        elif self.direction == 'left': dx = -self.speed
-        elif self.direction == 'right': dx = self.speed
-
-        # checa colisão antes de mover
+    def move(self, dx, dy):
         new_x = self.actor.x + dx
         new_y = self.actor.y + dy
         if can_move_to(get_actor_rect(new_x, new_y)):
             self.actor.x = new_x
             self.actor.y = new_y
+            self.is_moving = True
         else:
-            self.direction = random.choice(['up', 'down', 'left', 'right']) # bateu na parede → muda de direção
+            self.is_moving = False
 
-        # animação
-        self.frame_timer += self.frame_speed
-        if self.frame_timer >= 1:
-            self.frame_timer = 0
-            self.frame_index = (self.frame_index + 1) % len(self.animations[self.current_animation])
-            self.actor.image = self.animations[self.current_animation][self.frame_index]
+    def update(self):
+        # Só atualiza animação, subclasses fazem o movimento
+        if self.is_moving:
+            self.update_animation()
+        else:
+            self.actor.image = self.animations[self.current_animation][0]
+            self.frame_index = 0
 
     def draw(self):
         self.actor.draw()
+
+class Player(Character):
+    def __init__(self, pos, speed):
+        animations = {
+            'walk_up': ['sprites/lelia000', 'sprites/lelia001', 'sprites/lelia002'],
+            'walk_right': ['sprites/lelia003', 'sprites/lelia004', 'sprites/lelia005'],
+            'walk_down': ['sprites/lelia006', 'sprites/lelia007', 'sprites/lelia008'],
+            'walk_left': ['sprites/lelia009', 'sprites/lelia010', 'sprites/lelia011'],
+            'idle': ['sprites/lelia006']  # frame parado padrão para ficar parado olhando para baixo
+        }
+        super().__init__('sprites/lelia', pos, speed, animations)
+        self.current_animation = 'walk_down'
+
+    def update(self):
+        self.is_moving = False
+        dx, dy = 0, 0
+
+        if keyboard.up:
+            dy = -self.speed
+            self.current_animation = 'walk_up'
+        elif keyboard.down:
+            dy = self.speed
+            self.current_animation = 'walk_down'
+        elif keyboard.left:
+            dx = -self.speed
+            self.current_animation = 'walk_left'
+        elif keyboard.right:
+            dx = self.speed
+            self.current_animation = 'walk_right'
+        else:
+            self.is_moving = False
+            self.actor.image = self.animations[self.current_animation][0]
+            self.frame_index = 0
+            return
+
+        self.move(dx, dy)
+        super().update()
+        
+class Enemy(Character):
+    def __init__(self, pos, patrol_start, patrol_end, speed=1):
+        animations = {
+            'walk_up': ['sprites/skeleton000', 'sprites/skeleton001', 'sprites/skeleton002'],
+            'walk_right': ['sprites/skeleton003', 'sprites/skeleton004', 'sprites/lelia005'],
+            'walk_down': ['sprites/skeleton006', 'sprites/skeleton007', 'sprites/skeleton008'],
+            'walk_left': ['sprites/skeleton009', 'sprites/skeleton0010', 'sprites/skeleton0011'],
+            'idle': ['sprites/skeleton006']
+        }
+        super().__init__('enemy', pos, speed, animations)
+        self.patrol_start = patrol_start  # tupla (x, y)
+        self.patrol_end = patrol_end      # tupla (x, y)
+        self.target_point = patrol_end
+        self.moving_to_end = True
+        self.animation_speed = 0.2
+
+    def update(self):
+        dx = self.target_point[0] - self.actor.x
+        dy = self.target_point[1] - self.actor.y
+
+        dist = math.hypot(dx, dy)
+        if dist < 2:  # Chegou perto do ponto alvo, troca o destino
+            if self.moving_to_end:
+                self.target_point = self.patrol_start
+                self.moving_to_end = False
+            else:
+                self.target_point = self.patrol_end
+                self.moving_to_end = True
+            dx, dy = 0, 0  # Para não ultrapassar
+
+        if dist != 0:
+            dx = (dx / dist) * self.speed
+            dy = (dy / dist) * self.speed
+        else:
+            dx, dy = 0, 0
+
+        # Define animação baseado na direção do movimento (simplificado)
+        if abs(dx) > abs(dy):
+            if dx > 0:
+                self.current_animation = 'walk_right'
+            else:
+                self.current_animation = 'walk_left'
+        else:
+            if dy > 0:
+                self.current_animation = 'walk_down'
+            else:
+                self.current_animation = 'walk_up'
+
+        # tenta mover, se não conseguir troca direção
+        new_x = self.actor.x + dx
+        new_y = self.actor.y + dy
+        if can_move_to(get_actor_rect(new_x, new_y)):
+            self.move(dx, dy)
+            self.is_moving = True
+        else:
+            self.is_moving = False
+
+        super().update()
 
 def get_actor_rect(x, y):
     width, height = lelia.actor.width - 6, lelia.actor.height - 6  # Ajuste o tamanho do retângulo para ficar um pouco menor que a imagem real
@@ -198,12 +228,26 @@ def can_move_to(rect):
                     return False
     return True
 
+def player_dies():
+    lelia.actor.pos = (15, 550)
+
 # LÓGICA PRINCIPAL
 
 lelia = Player((15, 550), 2)
+enemies = [
+    Enemy((230, 50), (230, 50), (230, 210)),
+    Enemy((330, 50), (330, 50), (330, 210)),
+    Enemy((430, 50), (430, 50), (430, 210)),
+    Enemy((530, 50), (530, 50), (530, 210)),
+]
+
 
 def update():
     lelia.update()
+    for e in enemies:
+        e.update()
+        if lelia.actor.colliderect(e.actor):
+            player_dies()
 
 def draw():
     screen.clear()
@@ -212,5 +256,7 @@ def draw():
             tile_image = tiles[tile_index]
             screen.blit(tile_image, (col_index * TILE_SIZE, row_index * TILE_SIZE))
     lelia.draw()
+    for e in enemies:
+        e.draw()
 
 pgzrun.go()
