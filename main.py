@@ -63,6 +63,18 @@ tiles = [
 
 collidable_tiles = [3,4,6] # Tiles que vão ter colisão
 
+game_state = 'menu'
+
+buttons = [
+    Actor('buttons/playbutton', (400, 300)),
+     Actor('buttons/exit', (400, 450)),
+]
+buttons[0].name = 'start'
+buttons[1].name = 'exit'
+
+victory_bg = Actor("buttons/victory")  # imagem em images/parabens.png
+victory_bg.pos = (WIDTH // 2, HEIGHT // 2)
+
 # CLASSE DO PERSONAGEM (PLAYER)
 
 class Character:
@@ -231,7 +243,36 @@ def can_move_to(rect):
 def player_dies():
     lelia.actor.pos = (15, 550)
 
-# LÓGICA PRINCIPAL
+def draw_menu():
+    screen.clear()
+    screen.blit("menu/menu", (0, 0))  # Nome do arquivo sem extensão
+    for button in buttons:
+        button.draw()
+                    
+def on_mouse_down(pos, button):
+    if game_state == "menu":
+        for button in buttons:
+            if button.collidepoint(pos):
+                if button.name == "start":
+                    start_game()
+                elif button.name == "exit":
+                     raise SystemExit
+                    
+def start_game():
+    global game_state
+    lelia.actor.pos = (15, 550)
+    game_state = "playing"
+    
+def show_victory():
+    global game_state
+    game_state = "victory"
+    screen.blit("menu/menu", (0, 0))
+    clock.schedule_unique(back_to_menu, 3)
+
+def back_to_menu():
+    global game_state
+    game_state = "menu"
+    
 
 lelia = Player((15, 550), 2)
 enemies = [
@@ -241,22 +282,40 @@ enemies = [
     Enemy((530, 50), (530, 50), (530, 210)),
 ]
 
-
-def update():
+def update_game():
     lelia.update()
     for e in enemies:
         e.update()
         if lelia.actor.colliderect(e.actor):
             player_dies()
+    if lelia.actor.x == 785 and lelia.actor.y == 538:
+        show_victory()
 
-def draw():
+
+def draw_game():
     screen.clear()
+    
     for row_index, row in enumerate(map_tiles):
         for col_index, tile_index in enumerate(row):
             tile_image = tiles[tile_index]
             screen.blit(tile_image, (col_index * TILE_SIZE, row_index * TILE_SIZE))
+            
     lelia.draw()
+    
     for e in enemies:
         e.draw()
+        
+def update():
+    if game_state == "playing":
+        update_game()
+
+def draw():
+    if game_state == "menu":
+        draw_menu()
+    elif game_state == "playing":
+        draw_game()
+    elif game_state == "victory":
+        draw_menu()
+        victory_bg.draw()
 
 pgzrun.go()
