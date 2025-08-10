@@ -65,13 +65,16 @@ collidable_tiles = [3,4,6] # Tiles que vão ter colisão
 game_state = 'menu'
 buttons = [
     Actor('buttons/playbutton', (400, 300)),
-     Actor('buttons/exit', (400, 450)),
+    Actor('buttons/exit', (400, 450)),
+    Actor('buttons/mute', (400, 150))
 ]
 buttons[0].name = 'start'
 buttons[1].name = 'exit'
+buttons[2].name = 'sound'
 victory_bg = Actor("buttons/victory")
 victory_bg.pos = (WIDTH // 2, HEIGHT // 2)
 menu_music_playing = False
+sounds_enabled = True
 
 class Character:
     def __init__(self, sprite_prefix, pos, speed, animations):
@@ -250,6 +253,7 @@ def draw_menu():
         button.draw()
                     
 def on_mouse_down(pos, button):
+    global sounds_enabled
     if game_state == "menu":
         for button in buttons:
             if button.collidepoint(pos):
@@ -257,6 +261,14 @@ def on_mouse_down(pos, button):
                     start_game()
                 elif button.name == "exit":
                      raise SystemExit
+                elif button.name == "sound":
+                    sounds_enabled = not sounds_enabled
+                    if sounds_enabled:
+                        button.image = 'buttons/mute'
+                        music.play('menu_music')
+                    else:
+                        button.image = 'buttons/mute'
+                        music.stop()
                     
 def start_game():
     global game_state
