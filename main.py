@@ -323,10 +323,14 @@ def update():
     global menu_music_playing
     
     if game_state == "playing":
+        if game_state == "playing":
+            if not menu_music_playing:
+                music.play('menu_music')
+                menu_music_playing = True
+        
+        music.set_volume(0.2)  # Adjust this value as needed (e.g., 0.1 for very low, 0.5 for moderate)
+        
         update_game()
-        if menu_music_playing:
-            music.stop()
-            menu_music_playing = False
     elif game_state == "menu":
         if not menu_music_playing:
             music.play('menu_music')
