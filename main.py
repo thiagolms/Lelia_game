@@ -42,7 +42,7 @@ map_tiles = [
     [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 2, 2, 2, 6, 0, 0, 0, 0, 0, 0, 0, 0, 6, 2, 2, 2, 2, 2, 2, 2, 2, 6, 0, 0, 0, 0, 0, 0, 0, 0, 3],
     [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 2, 2, 2, 6, 0, 0, 0, 0, 0, 0, 0, 0, 6, 2, 2, 2, 6, 6, 6, 6, 6, 6, 0, 0, 0, 0, 0, 0, 0, 0, 3],
     [3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 2, 2, 2, 6, 0, 0, 0, 0, 0, 0, 0, 0, 6, 2, 2, 2, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 3],
-    [3, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 2, 2, 2, 6, 0, 0, 0, 0, 0, 0, 0, 0, 6, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 6, 3],
+    [3, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 2, 2, 2, 6, 0, 0, 0, 0, 0, 0, 0, 0, 6, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3],
     [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 6, 0, 0, 0, 0, 0, 0, 0, 0, 6, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 5],
     [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 6, 0, 0, 0, 0, 0, 0, 0, 0, 6, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 7],
     [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 6, 0, 0, 0, 0, 0, 0, 0, 0, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 3],
@@ -62,25 +62,19 @@ tiles = [
 ]
 
 collidable_tiles = [3,4,6] # Tiles que vão ter colisão
-
 game_state = 'menu'
-
 buttons = [
     Actor('buttons/playbutton', (400, 300)),
      Actor('buttons/exit', (400, 450)),
 ]
 buttons[0].name = 'start'
 buttons[1].name = 'exit'
-
-victory_bg = Actor("buttons/victory")  # imagem em images/parabens.png
+victory_bg = Actor("buttons/victory")
 victory_bg.pos = (WIDTH // 2, HEIGHT // 2)
-
-# CLASSE DO PERSONAGEM (PLAYER)
+menu_music_playing = False
 
 class Character:
     def __init__(self, sprite_prefix, pos, speed, animations):
-        # sprite_prefix: caminho da pasta ou prefixo dos sprites (ex: 'sprites/lelia')
-        # animations: dicionário {'walk_up': [...], 'idle': [...], etc.}
         self.actor = Actor(animations['idle'][0], pos)
         self.speed = speed
         self.animations = animations
@@ -109,7 +103,7 @@ class Character:
 
     def update(self):
         # Só atualiza animação, subclasses fazem o movimento
-        if self.is_moving:
+        if self.is_moving or self.current_animation == 'idle':
             self.update_animation()
         else:
             self.actor.image = self.animations[self.current_animation][0]
@@ -125,10 +119,12 @@ class Player(Character):
             'walk_right': ['sprites/lelia003', 'sprites/lelia004', 'sprites/lelia005'],
             'walk_down': ['sprites/lelia006', 'sprites/lelia007', 'sprites/lelia008'],
             'walk_left': ['sprites/lelia009', 'sprites/lelia010', 'sprites/lelia011'],
-            'idle': ['sprites/lelia006']  # frame parado padrão para ficar parado olhando para baixo
+            'idle': ['sprites/lelia006', 'sprites/lelia012']  # frame parado padrão para ficar parado olhando para baixo
         }
         super().__init__('sprites/lelia', pos, speed, animations)
-        self.current_animation = 'walk_down'
+        self.current_animation = 'idle'
+        self.idle_speed = 0.08
+        self.animation_speed = self.idle_speed        
 
     def update(self):
         self.is_moving = False
@@ -137,22 +133,26 @@ class Player(Character):
         if keyboard.up:
             dy = -self.speed
             self.current_animation = 'walk_up'
+            self.is_moving = True
         elif keyboard.down:
             dy = self.speed
             self.current_animation = 'walk_down'
+            self.is_moving = True
         elif keyboard.left:
             dx = -self.speed
             self.current_animation = 'walk_left'
+            self.is_moving = True
         elif keyboard.right:
             dx = self.speed
             self.current_animation = 'walk_right'
+            self.is_moving = True
         else:
+            self.current_animation = 'idle'
             self.is_moving = False
-            self.actor.image = self.animations[self.current_animation][0]
-            self.frame_index = 0
-            return
+        
+        if self.is_moving:
+            self.move(dx, dy)
 
-        self.move(dx, dy)
         super().update()
         
 class Enemy(Character):
@@ -287,8 +287,10 @@ def update_game():
     for e in enemies:
         e.update()
         if lelia.actor.colliderect(e.actor):
+            sounds.skeleton.play() # Som quando colidir com inimigo
             player_dies()
     if lelia.actor.x == 785 and lelia.actor.y == 538:
+        sounds.win.play()
         show_victory()
 
 
@@ -306,8 +308,17 @@ def draw_game():
         e.draw()
         
 def update():
+    global menu_music_playing
+    
     if game_state == "playing":
         update_game()
+        if menu_music_playing:
+            music.stop()
+            menu_music_playing = False
+    elif game_state == "menu":
+        if not menu_music_playing:
+            music.play('menu_music')
+            menu_music_playing = True
 
 def draw():
     if game_state == "menu":
